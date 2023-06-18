@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(cuid())
+  email    String @unique
+  name     String
+  password String
+  role     String
+}
+
+model Customer {
+  id           String        @id @default(cuid())
+  name         String
+  email        String
+  phone        String
+  transactions Transaction[]
+}
+
+model Menu {
+  id                  String              @id @default(cuid())
+  name                String
+  price               Int
+  file_id             String?             @unique
+  transaction_details TransactionDetail[]
+  file                File?               @relation(fields: [file_id], references: [id])
+}
+
+model Topping {
+  id              String          @id @default(cuid())
+  name            String
+  price           Int
+  file_id         String?         @unique
+  topping_details ToppingDetail[]
+  file            File?           @relation(fields: [file_id], references: [id])
+}
+
+model Payment {
+  id           String        @id @default(cuid())
+  name         String
+  transactions Transaction[]
+}
+
+model File {
+  id       String   @id @default(cuid())
+  name     String
+  path     String
+  size     Int
+  toppings Topping?
+  menus    Menu?
+}
+
+model Transaction {
+  id                  String              @id @default(cuid())
+  date                DateTime            @default(now())
+  payment_id          String
+  customer_id         String
+  note                String
+  customer            Customer            @relation(fields: [customer_id], references: [id])
+  payment             Payment             @relation(fields: [payment_id], references: [id])
+  transaction_details TransactionDetail[]
+}
+
+model TransactionDetail {
+  id             String          @id @default(cuid())
+  transaction_id String
+  menu_id        String
+  qty            Int
+  note           String
+  menu           Menu            @relation(fields: [menu_id], references: [id])
+  transaction    Transaction     @relation(fields: [transaction_id], references: [id])
+  ToppingDetail  ToppingDetail[]
+}
+
+model ToppingDetail {
+  transaction_detail_id String
+  topping_id            String
+  qty                   Int
+  note                  String
+  transaction_details   TransactionDetail? @relation(fields: [transaction_detail_id], references: [id])
+  Topping               Topping?           @relation(fields: [topping_id], references: [id])
+
+  @@id([transaction_detail_id, topping_id])
+}
