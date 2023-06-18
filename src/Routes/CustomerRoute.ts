@@ -1,10 +1,13 @@
 import { Router } from "express";
-// import AuthMiddleware from "../Middleware/AuthMiddleware";
 import { AddCustomerHandler, DeleteCustomerHandler, GetAllCustomerHandler, GetCustomerHandler, UpdateCustomerHandler } from "../handler/customer";
+import AuthMiddleware from "../middleware/AuthMiddleware";
 
 const router: Router = Router();
 
-// router.use(AuthMiddleware);
+const disableAuth = process.env.DISABLE_AUTH === "true" ? true : false;
+if (disableAuth === false) {
+    router.use(AuthMiddleware);
+}
 
 router.get("/", GetAllCustomerHandler);
 

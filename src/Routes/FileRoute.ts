@@ -1,11 +1,14 @@
 import { Router } from "express";
 import FileMiddleware from "../middleware/FileMiddleware";
-// import AuthMiddleware from "../Middleware/AuthMiddleware";
 import { AddFileHandler, ClearFileHandler, DeleteFileHandler, GetAllFileHandler, GetFileHandler } from "../handler/file";
+import AuthMiddleware from "../middleware/AuthMiddleware";
 
 const router: Router = Router();
 
-// router.use(AuthMiddleware);
+const disableAuth = process.env.DISABLE_AUTH === "true" ? true : false;
+if (disableAuth === false) {
+    router.use(AuthMiddleware);
+}
 
 router.get("/", GetAllFileHandler);
 
