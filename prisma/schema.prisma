@@ -55,8 +55,8 @@ model File {
   name     String
   path     String
   size     Int
-  toppings Topping?
-  menus    Menu?
+  topping Topping?
+  menu    Menu?
 }
 
 model Transaction {
@@ -64,7 +64,7 @@ model Transaction {
   date                DateTime            @default(now())
   payment_id          String
   customer_id         String
-  note                String
+  note                String?
   customer            Customer            @relation(fields: [customer_id], references: [id])
   payment             Payment             @relation(fields: [payment_id], references: [id])
   transaction_details TransactionDetail[]
@@ -75,19 +75,19 @@ model TransactionDetail {
   transaction_id String
   menu_id        String
   qty            Int
-  note           String
+  note           String?
   menu           Menu            @relation(fields: [menu_id], references: [id])
   transaction    Transaction     @relation(fields: [transaction_id], references: [id])
-  ToppingDetail  ToppingDetail[]
+  topping_details  ToppingDetail[]
 }
 
 model ToppingDetail {
   transaction_detail_id String
   topping_id            String
   qty                   Int
-  note                  String
+  note                  String?
   transaction_details   TransactionDetail? @relation(fields: [transaction_detail_id], references: [id])
-  Topping               Topping?           @relation(fields: [topping_id], references: [id])
+  topping               Topping?           @relation(fields: [topping_id], references: [id])
 
   @@id([transaction_detail_id, topping_id])
 }
