@@ -77,7 +77,7 @@ model TransactionDetail {
   qty            Int
   note           String?
   menu           Menu            @relation(fields: [menu_id], references: [id])
-  transaction    Transaction     @relation(fields: [transaction_id], references: [id])
+  transaction    Transaction     @relation(fields: [transaction_id], references: [id], onDelete: Cascade)
   topping_details  ToppingDetail[]
 }
 
@@ -86,7 +86,7 @@ model ToppingDetail {
   topping_id            String
   qty                   Int
   note                  String?
-  transaction_details   TransactionDetail? @relation(fields: [transaction_detail_id], references: [id])
+  transaction_details   TransactionDetail? @relation(fields: [transaction_detail_id], references: [id], onDelete: Cascade)
   topping               Topping?           @relation(fields: [topping_id], references: [id])
 
   @@id([transaction_detail_id, topping_id])

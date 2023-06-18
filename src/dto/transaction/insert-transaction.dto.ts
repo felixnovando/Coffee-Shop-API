@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsArray, IsDefined, IsInt, IsNotEmpty, IsOptional, IsString, ValidateNested } from "class-validator";
+import { IsArray, IsDefined, IsInt, IsNotEmpty, IsOptional, IsString, ValidateNested, ArrayMinSize } from "class-validator";
 import "reflect-metadata";
 
 export class InsertTransactionDTO{
@@ -18,6 +18,7 @@ export class InsertTransactionDTO{
     note?: string;
 
     @IsArray()
+    @ArrayMinSize(1)
     @ValidateNested({ each: true })
     @Type(() => InsertDetailTransactionDTO)
     details!: InsertDetailTransactionDTO[];

@@ -1,4 +1,4 @@
-import { InsertTransactionDTO } from "../dto/transaction";
+import { InsertTransactionDTO, UpdateTransactionDTO } from "../dto/transaction";
 import { client } from "../prisma/prisma";
 import { Customer } from "./Customer";
 import { Payment } from "./Payment";
@@ -83,22 +83,20 @@ const addTransaction = async ({ customerId, paymentId, note }: InsertTransaction
     return transaction;
 };
 
-const deleteTransaction = async (id: string): Promise<Transaction | null> => {
-    const transaction = await client.transaction.findFirst({
-        where: { id: id }
+const updateTransaction = async ({ id, note }: UpdateTransactionDTO) => {
+    const transaction = await client.transaction.update({
+        where: { id: id },
+        data: {
+            note: note
+        }
     });
+    return transaction;
+};
 
-    if (!transaction) return null;
-
-    //delete topping details
-
-    //delete transaction details
-
-    //delete transaction
-    // await client.transaction.delete({
-    //     where: { id: transaction.id }
-    // });
-
+const deleteTransaction = async (id: string): Promise<Transaction | null> => {
+    const transaction = await client.transaction.delete({
+        where: { id: id },
+    });
     return transaction;
 };
 
@@ -107,5 +105,6 @@ export {
     getAllTransaction,
     getTransaction,
     addTransaction,
+    updateTransaction,
     deleteTransaction
 };

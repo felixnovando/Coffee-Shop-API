@@ -1,9 +1,9 @@
 import { Request, Response, Router } from "express";
 // import AuthMiddleware from "../Middleware/AuthMiddleware";
 import { handleError, handleTransaction } from "../helper/ResponseHelper";
-import { Transaction, addTransaction, deleteTransaction, getAllTransaction, getTransaction } from "../model/Transaction";
+import { Transaction, addTransaction, deleteTransaction, getAllTransaction, getTransaction, updateTransaction } from "../model/Transaction";
 import { plainToInstance } from "class-transformer";
-import { DeleteTransactionDTO, InsertTransactionDTO } from "../dto/transaction";
+import { DeleteTransactionDTO, InsertTransactionDTO, UpdateTransactionDTO } from "../dto/transaction";
 import { validateDTO } from "../dto/validate";
 import { addDetailTransaction } from "../model/TransactionDetail";
 
@@ -38,6 +38,20 @@ router.post("/", async (req: Request, res: Response) => {
             ...transaction,
             transaction_details: details
         };
+    });
+});
+
+router.put("/", async (req: Request, res: Response) => {
+    const body = plainToInstance(UpdateTransactionDTO, req.body);
+
+    const errors = await validateDTO(body);
+    if (errors) {
+        handleError(res, errors);
+        return;
+    }
+
+    handleTransaction(res, "Transaction Updated", async () => {
+        return await updateTransaction(body);
     });
 });
 
