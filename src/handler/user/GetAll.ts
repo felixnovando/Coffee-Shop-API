@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { handleTransaction } from "../../Helper/ResponseHelper";
+import { handleTransaction } from "../../helper/ResponseHelper";
 import { getAllUser } from "../../model/User";
 
 export const GetAllUserHandler = async (req: Request, res: Response) => {

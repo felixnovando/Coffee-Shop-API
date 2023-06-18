@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 // import AuthMiddleware from "../Middleware/AuthMiddleware";
-import { handleError, handleTransaction } from "../Helper/ResponseHelper";
+import { handleError, handleTransaction } from "../helper/ResponseHelper";
 import { Transaction, addTransaction, deleteTransaction, getAllTransaction, getTransaction } from "../model/Transaction";
 import { plainToInstance } from "class-transformer";
 import { DeleteTransactionDTO, InsertTransactionDTO } from "../dto/transaction";

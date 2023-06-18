@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { VerifiedTokenResult, generateAccessToken, getToken, verifyRefreshToken } from "../../Helper/AuthHelper";
-import { handleTransaction } from "../../Helper/ResponseHelper";
+import { VerifiedTokenResult, generateAccessToken, getToken, verifyRefreshToken } from "../../helper/AuthHelper";
+import { handleTransaction } from "../../helper/ResponseHelper";
 import { LoggedUser } from "../../model/User";
 
 export const RefreshHandler = async (req: Request, res: Response) => {

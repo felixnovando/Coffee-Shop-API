@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { VerifiedTokenResult, getToken, verifyAccessToken } from "../../Helper/AuthHelper";
-import { handleTransaction } from "../../Helper/ResponseHelper";
+import { VerifiedTokenResult, getToken, verifyAccessToken } from "../../helper/AuthHelper";
+import { handleTransaction } from "../../helper/ResponseHelper";
 
 export const TestHandler = async (req: Request, res: Response) => {
 

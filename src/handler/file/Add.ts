@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { handleTransaction } from "../../Helper/ResponseHelper";
-import { uploadFile } from "../../Helper/FileHelper";
+import { handleTransaction } from "../../helper/ResponseHelper";
+import { uploadFile } from "../../helper/FileHelper";
 
 export const AddFileHandler = (req: Request, res: Response) => {
     const file = req.file;

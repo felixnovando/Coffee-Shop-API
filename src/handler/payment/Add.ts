@@ -2,7 +2,7 @@ import { plainToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import { InsertPaymentDTO } from "../../dto/payment";
 import { validateDTO } from "../../dto/validate";
-import { handleError, handleTransaction } from "../../Helper/ResponseHelper";
+import { handleError, handleTransaction } from "../../helper/ResponseHelper";
 import { addPayment } from "../../model/Payment";
 
 export const AddPaymentHandler = async (req: Request, res: Response) => {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { handleTransaction } from "../../Helper/ResponseHelper";
+import { handleTransaction } from "../../helper/ResponseHelper";
 import { getPayment } from "../../model/Payment";
 
 export const GetPaymentHandler = async (req: Request, res: Response) => {

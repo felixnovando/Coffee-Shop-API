@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import multer from "multer";
 import path from "path";
-import { handleError } from "../Helper/ResponseHelper";
+import { handleError } from "../helper/ResponseHelper";
 
 const IMAGE_TYPES: string[] = process.env.IMAGE_EXTENSIONS ? process.env.IMAGE_EXTENSIONS.split(";") : [];
 

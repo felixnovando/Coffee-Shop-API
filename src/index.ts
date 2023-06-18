@@ -1,13 +1,13 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import userRouter from "./Routes/UserRoute";
-import menuRouter from "./Routes/MenuRoute";
-import customerRouter from "./Routes/CustomerRoute";
-import transactionRouter from "./Routes/TransactionRoute";
-import authRouter from "./Routes/AuthRoute";
-import toppingRouter from "./Routes/ToppingRoute";
-import fileRouter from "./Routes/FileRoute";
-import typeRouter from "./Routes/PaymentRoute";
+import userRouter from "./routes/UserRoute";
+import menuRouter from "./routes/MenuRoute";
+import customerRouter from "./routes/CustomerRoute";
+import transactionRouter from "./routes/TransactionRoute";
+import authRouter from "./routes/AuthRoute";
+import toppingRouter from "./routes/ToppingRoute";
+import fileRouter from "./routes/FileRoute";
+import typeRouter from "./routes/PaymentRoute";
 import path from "path";
 import cors from "cors";
 

@@ -1,10 +1,10 @@
 import { plainToInstance } from "class-transformer";
 import { validateDTO } from "../../dto/validate";
-import { handleError, handleTransaction } from "../../Helper/ResponseHelper";
+import { handleError, handleTransaction } from "../../helper/ResponseHelper";
 import { LoggedUser, getUserByEmail } from "../../model/User";
 import { LoginDTO } from "../../dto/auth";
 import { Request, Response } from "express";
-import { Token, generateAccessToken, generateRefreshToken, verifyPassword, expireTime, refreshTokenExpireTime } from "../../Helper/AuthHelper";
+import { Token, generateAccessToken, generateRefreshToken, verifyPassword, expireTime, refreshTokenExpireTime } from "../../helper/AuthHelper";
 
 export const LoginHandler = async (req: Request, res: Response) => {
 

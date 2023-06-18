@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { handleTransaction } from "../../Helper/ResponseHelper";
+import { handleTransaction } from "../../helper/ResponseHelper";
 import { getTopping } from "../../model/Topping";
 
 export const GetToppingHandler = (req: Request, res: Response) => {

@@ -1,6 +1,6 @@
 import { plainToInstance } from "class-transformer";
 import { validateDTO } from "../../dto/validate";
-import { handleError, handleTransaction } from "../../Helper/ResponseHelper";
+import { handleError, handleTransaction } from "../../helper/ResponseHelper";
 import { Request, Response } from "express";
 import { DeleteMenuDTO } from "../../dto/menu";
 import { deleteMenu } from "../../model/Menu";

@@ -1,10 +1,10 @@
 import { plainToInstance } from "class-transformer";
 import { InsertMenuDTO } from "../../dto/menu";
 import { validateDTO } from "../../dto/validate";
-import { handleError, handleTransaction } from "../../Helper/ResponseHelper";
+import { handleError, handleTransaction } from "../../helper/ResponseHelper";
 import { addMenu } from "../../model/Menu";
 import { Request, Response } from "express";
-import { uploadFile } from "../../Helper/FileHelper";
+import { uploadFile } from "../../helper/FileHelper";
 
 export const AddMenuHandler = async (req: Request, res: Response) => {
     const uploadedFile = req.file ? await uploadFile(req.file) : null;

@@ -1,7 +1,7 @@
 import { Router } from "express";
 // import AuthMiddleware from "../Middleware/AuthMiddleware";
 import { AddToppingHandler, DeleteToppingHandler, GetAllToppingHandler, GetToppingHandler, UpdateToppingHandler } from "../handler/topping";
-import FileMiddleware from "../Middleware/FileMiddleware";
+import FileMiddleware from "../middleware/FileMiddleware";
 
 const router: Router = Router();
 

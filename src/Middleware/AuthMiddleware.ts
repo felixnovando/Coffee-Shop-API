@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { getToken, verifyAccessToken } from "../Helper/AuthHelper";
+import { getToken, verifyAccessToken } from "../helper/AuthHelper";
 import { ErrorResponse } from "../types";
 
 

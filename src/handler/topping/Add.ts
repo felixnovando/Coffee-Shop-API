@@ -1,10 +1,10 @@
 import { plainToInstance } from "class-transformer";
 import { validateDTO } from "../../dto/validate";
-import { handleError, handleTransaction } from "../../Helper/ResponseHelper";
+import { handleError, handleTransaction } from "../../helper/ResponseHelper";
 import { Request, Response } from "express";
 import { InsertToppingDTO } from "../../dto/topping";
 import { addTopping } from "../../model/Topping";
-import { uploadFile } from "../../Helper/FileHelper";
+import { uploadFile } from "../../helper/FileHelper";
 
 export const AddToppingHandler = async (req: Request, res: Response) => {
     const uploadedFile = req.file ? await uploadFile(req.file) : null;

@@ -1,7 +1,7 @@
 import { plainToInstance } from "class-transformer";
 import { InsertCustomerDTO } from "../../dto/customer";
 import { validateDTO } from "../../dto/validate";
-import { handleError, handleTransaction } from "../../Helper/ResponseHelper";
+import { handleError, handleTransaction } from "../../helper/ResponseHelper";
 import { addCustomer } from "../../model/Customer";
 import { Request, Response } from "express";
 

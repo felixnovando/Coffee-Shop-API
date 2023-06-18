@@ -2,7 +2,7 @@ import { plainToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import { DeleteFileDTO } from "../../dto/file";
 import { validateDTO } from "../../dto/validate";
-import { handleError, handleTransaction } from "../../Helper/ResponseHelper";
+import { handleError, handleTransaction } from "../../helper/ResponseHelper";
 import { deleteFile } from "../../model/File";
 
 export const DeleteFileHandler = async (req: Request, res: Response) => {

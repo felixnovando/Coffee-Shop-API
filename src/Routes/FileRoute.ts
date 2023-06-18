@@ -1,5 +1,5 @@
 import { Router } from "express";
-import FileMiddleware from "../Middleware/FileMiddleware";
+import FileMiddleware from "../middleware/FileMiddleware";
 // import AuthMiddleware from "../Middleware/AuthMiddleware";
 import { AddFileHandler, ClearFileHandler, DeleteFileHandler, GetAllFileHandler, GetFileHandler } from "../handler/file";
 
