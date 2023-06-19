@@ -18,5 +18,5 @@
   <p>3. run <b>docker-compose up -d</b></p>
   <p>4. run <b>docker exec -it api npx prisma db push</b></p>
   <p>5. you can remove node_modules from your pc</p>
-  <p>6. Done</p>
+  <p>6. done</p>
 </div>
