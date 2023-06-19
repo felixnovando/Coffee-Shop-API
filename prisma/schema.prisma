@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -51,10 +52,10 @@ model Payment {
 }
 
 model File {
-  id       String   @id @default(cuid())
-  name     String
-  path     String
-  size     Int
+  id      String   @id @default(cuid())
+  name    String
+  path    String
+  size    Int
   topping Topping?
   menu    Menu?
 }
@@ -71,14 +72,14 @@ model Transaction {
 }
 
 model TransactionDetail {
-  id             String          @id @default(cuid())
-  transaction_id String
-  menu_id        String
-  qty            Int
-  note           String?
-  menu           Menu            @relation(fields: [menu_id], references: [id])
-  transaction    Transaction     @relation(fields: [transaction_id], references: [id], onDelete: Cascade)
-  topping_details  ToppingDetail[]
+  id              String          @id @default(cuid())
+  transaction_id  String
+  menu_id         String
+  qty             Int
+  note            String?
+  menu            Menu            @relation(fields: [menu_id], references: [id])
+  transaction     Transaction     @relation(fields: [transaction_id], references: [id], onDelete: Cascade)
+  topping_details ToppingDetail[]
 }
 
 model ToppingDetail {
