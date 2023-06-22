@@ -3,7 +3,7 @@ version: '3.1'
 services:
   db:
     image: mysql
-    container_name: db
+    container_name: coffee-shop-db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
@@ -11,10 +11,10 @@ services:
       MYSQL_PASSWORD: admin123
       MYSQL_DATABASE: coffee-shop
     volumes:
-      - db:/var/lib/mysql
+      - coffee-shop-db:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin
-    container_name: phpmyadmin
+    container_name: coffee-shop-phpmyadmin
     restart: always
     ports:
       - 8080:80
@@ -27,16 +27,16 @@ services:
   api:
     build:
       dockerfile: ./Dockerfile
-    container_name: api
+    container_name: coffee-shop-api
     env_file:
       - .env
     ports:
       - 8000:3000
     volumes:
-      - uploads:/app/public/uploads
+      - coffee-shop-uploads:/app/public/uploads
     depends_on:
       - db
 
 volumes:
-  db:
-  uploads:
+  coffee-shop-db:
+  coffee-shop-uploads:
