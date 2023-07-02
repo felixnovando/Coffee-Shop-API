@@ -16,7 +16,11 @@ export const AddTransactionHandler = async (req: Request, res: Response) => {
     }
 
     handleTransaction(res, "Transaction Added", async () => {
-        const transaction = await addTransaction(body);
+
+        if(!req.user)
+            throw new Error("Must have staff to add transaction");
+
+        const transaction = await addTransaction(body, req.user.id);
 
         const details = await Promise.all(body.details.map(async (detail) => {
             const detaiData = await addDetailTransaction(transaction.id, detail);

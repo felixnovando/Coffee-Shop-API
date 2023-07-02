@@ -1,6 +1,5 @@
 import { InsertTransactionDTO, UpdateTransactionDTO } from "../dto/transaction";
 import { client } from "../prisma/prisma";
-import { Customer } from "./Customer";
 import { Payment } from "./Payment";
 import { TransactionDetail } from "./TransactionDetail";
 
@@ -10,7 +9,14 @@ type Transaction = {
     payment_id: string,
     customer_id: string,
     note?: string | null,
-    customer?: Customer | null,
+    customer?: {
+        id: string,
+        name: string
+    } | null,
+    staff?: {
+        id: string,
+        name: string
+    } | null,
     payment?: Payment | null,
     transaction_details?: TransactionDetail[] | null
 };
@@ -18,7 +24,18 @@ type Transaction = {
 const getAllTransaction = async (): Promise<Transaction[]> => {
     const transactions: Transaction[] = await client.transaction.findMany({
         include: {
-            customer: true,
+            staff: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            customer: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
             payment: true,
             transaction_details: {
                 include: {
@@ -47,7 +64,18 @@ const getTransaction = async (id: string) => {
     const transaction: Transaction | null = await client.transaction.findFirst({
         where: { id: id },
         include: {
-            customer: true,
+            staff: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
+            customer: {
+                select: {
+                    id: true,
+                    name: true
+                }
+            },
             payment: true,
             transaction_details: {
                 include: {
@@ -72,12 +100,13 @@ const getTransaction = async (id: string) => {
     return transaction;
 };
 
-const addTransaction = async ({ customerId, paymentId, note }: InsertTransactionDTO) => {
+const addTransaction = async ({ customerId, paymentId, note }: InsertTransactionDTO, staffId: string) => {
     const transaction: Transaction = await client.transaction.create({
         data: {
             customer_id: customerId,
             payment_id: paymentId,
             note: note,
+            staff_id: staffId,
         }
     });
     return transaction;

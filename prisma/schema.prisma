@@ -12,11 +12,12 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(cuid())
-  email    String @unique
-  name     String
-  password String
-  role     String
+  id           String        @id @default(cuid())
+  email        String        @unique
+  name         String
+  password     String
+  role         String
+  transactions Transaction[]
 }
 
 model Customer {
@@ -65,8 +66,10 @@ model Transaction {
   date                DateTime            @default(now())
   payment_id          String
   customer_id         String
+  staff_id            String
   note                String?
   customer            Customer            @relation(fields: [customer_id], references: [id])
+  staff                User               @relation(fields: [staff_id], references: [id])
   payment             Payment             @relation(fields: [payment_id], references: [id])
   transaction_details TransactionDetail[]
 }

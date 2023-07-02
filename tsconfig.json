@@ -14,9 +14,13 @@
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "@types",
+      "./node_modules/@types"
+    ]
   },
   "exclude": [
     "./node_modules"
-  ]
+  ],
 }

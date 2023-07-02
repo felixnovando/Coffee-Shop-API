@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { getToken, verifyAccessToken } from "../helper/AuthHelper";
 import { ErrorResponse } from "../types";
+import { getUser } from "../model/User";
 
 
-const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
+const AuthMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     try {
         if (!req.headers.authorization || req.headers.authorization == "")
             throw new Error("Token was not provided");
@@ -13,8 +14,9 @@ const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
         const data = verifyAccessToken(jwt_token);
 
         if (data) {
-            next();
-            return;
+            const user = await getUser(data.id);
+            req.user = user;
+            return next();
         }
 
         throw new Error("Invalid Token");

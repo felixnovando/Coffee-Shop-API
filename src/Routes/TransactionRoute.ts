@@ -19,5 +19,4 @@ router.delete("/", DeleteTransactionHandler);
 
 router.get("/:id", GetTransactionHandler);
 
-
 export default router;
